@@ -23,14 +23,10 @@ app.set("views", path.join(__dirname, "views"));
 app.get("/", (req, res) => {
   res.render("home");
 });
-app.get("/makecampground", async (req, res) => {
-  const camp1 = new Campground({
-    title: "My Nice Backyard",
-    description: "very cheap camping",
-    price: "25 dolar",
-  });
-  await camp1.save();
-  res.send(camp1);
+
+app.get("/campgrounds", async (req, res) => {
+  const campgrounds = await Campground.find({});
+  res.render("campgrounds/index", { campgrounds });
 });
 
 app.listen(3000, () => {
