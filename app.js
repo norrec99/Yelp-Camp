@@ -102,8 +102,7 @@ const styleSrcUrls = [
 ];
 const connectSrcUrls = [
   "https://api.mapbox.com/",
-  "https://a.tiles.mapbox.com/",
-  "https://b.tiles.mapbox.com/",
+  "https://*.tiles.mapbox.com",
   "https://events.mapbox.com/",
 ];
 const fontSrcUrls = [];
@@ -140,12 +139,6 @@ app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
   next();
-});
-
-app.get("/fakeUser", async (req, res) => {
-  const user = new User({ email: "colttt@gmail.com", username: "colttt" });
-  const newUser = await User.register(user, "chicken");
-  res.send(newUser);
 });
 
 app.use("/", userRoutes);
